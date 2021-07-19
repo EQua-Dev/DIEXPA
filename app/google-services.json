@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "399032117553",
+    "project_id": "diexpa",
+    "storage_bucket": "diexpa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399032117553:android:fd81b734af6b9759e4e810",
+        "android_client_info": {
+          "package_name": "com.androidstrike.diexpa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "399032117553-11hguqkvmlc5mijdcciiej4717ics9v8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEcwfCs8GIrBu85Lq7zObUbPgUXZWZ4_o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "399032117553-11hguqkvmlc5mijdcciiej4717ics9v8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_sign_up"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/auth_bg"
+    tools:context=".ui.auth.SignUp">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:src="@drawable/splash"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_up_intro_note"
+        android:textAlignment="center"
+        android:fontFamily="cursive"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="16dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:id="@+id/card_layout"
+        android:background="@drawable/auth_inner_bg"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:orientation="vertical"
+            android:background="@drawable/auth_inner_bg"
+            android:id="@+id/linear_form">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:paddingTop="20dp"
+                android:hint="@string/sign_up_first_name"
+                android:inputType="text"
+                android:textColor="@color/purple_500"
+                android:id="@+id/sign_up_user_name"/>
+
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:hint="@string/sign_up_email"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/purple_500"
+                android:id="@+id/sign_up_email"/>
+
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:hint="@string/sign_up_password"
+                android:inputType="textPassword"
+                android:textColor="@color/purple_500"
+                android:id="@+id/sign_up_password"/>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:hint="@string/sign_up_confirm_password"
+                android:inputType="text"
+                android:textColor="@color/purple_500"
+                android:id="@+id/sign_up_confirm_password"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dialog"
+                android:padding="15dp"
+                android:id="@+id/spinner_nutrition" />
+
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_up_button_sign_up"
+        android:layout_below="@id/card_layout"
+        android:layout_margin="8dp"
+        style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
+        android:id="@+id/sign_up_btn_register"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/log_in_instead"
+        android:gravity="center_horizontal"
+        android:id="@+id/signup_txt_login"/>
+
+
+
+</LinearLayout>

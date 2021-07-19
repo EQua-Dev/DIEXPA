@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">DIEXPA</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="splash_description">splash logo</string>
+    <string name="sign_up_intro_note">First Time?</string>
+    <string name="sign_up_first_name">Username</string>
+    <string name="sign_up_email">Email</string>
+    <string name="sign_up_password">Password</string>
+    <string name="sign_up_confirm_password">Confirm Password</string>
+    <string name="sign_up_button_sign_up">Sign Up</string>
+    <string name="log_in_instead">Aready a user? Login Instead</string>
+    <string name="log_in_welcome_note">Welcome Back</string>
+    <string name="log_in_password">Password</string>
+    <string name="log_in_button_confirm">Log In</string>
+    <string name="log_in_forgot_password">Forgot Passwor?</string>
+    <string name="sign_up_text">Create New Account</string>
+    <string name="text_enter_email_for_password_reset">Enter Your Registered Email</string>
+    <string name="text_reset_password">Reset Password</string>
+    <string name="daily_tab_title">Daily</string>
+    <string name="weekly_tab_title">Weekly</string>
+    <string name="menu_today">Today</string>
+    <string name="menu_tomorrow">Tomorrow</string>
+    <string name="menu_next_day">Next Day</string>
+    <string name="lunch_text">Lunch</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="time">Time: </string>
+    <string name="dinner">Dinner</string>
+    <string name="brunch">Brunch</string>
+    <string name="breakfast_time">6am - 12pm</string>
+    <string name="lunch_time">12pm - 4pm</string>
+    <string name="dinner_time">4pm - 7pm</string>
+    <string name="brunch_time">Any time between Breakfast and Dinner</string>
+</resources>

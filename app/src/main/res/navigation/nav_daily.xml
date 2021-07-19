@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_daily"
+    app:startDestination="@id/menu_today">
+
+    <fragment
+        android:id="@+id/menu_today"
+        android:name="com.androidstrike.diexpa.ui.dailyFragments.Today"
+        android:label="@string/menu_today"
+        tools:layout="@layout/fragment_today" />
+    <fragment
+        android:id="@+id/menu_tomorrow"
+        android:name="com.androidstrike.diexpa.ui.dailyFragments.Tomorrow"
+        android:label="@string/menu_tomorrow"
+        tools:layout="@layout/fragment_tomorrow" />
+    <fragment
+        android:id="@+id/menu_next_day"
+        android:name="com.androidstrike.diexpa.ui.dailyFragments.NextDay"
+        android:label="@string/menu_next_day"
+        tools:layout="@layout/fragment_next_day" />
+</navigation>

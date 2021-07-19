@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_week"
+    app:startDestination="@id/weekly">
+
+    <fragment
+        android:id="@+id/weekly"
+        android:name="com.androidstrike.diexpa.ui.Weekly"
+        android:label="fragment_weekly"
+        tools:layout="@layout/fragment_weekly" >
+        <action
+            android:id="@+id/action_weekly_to_weekDay"
+            app:destination="@id/weekDay" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/weekDay"
+        android:name="com.androidstrike.diexpa.ui.WeekDay"
+        android:label="fragment_week_day"
+        tools:layout="@layout/fragment_week_day" >
+        <action
+            android:id="@+id/action_weekDay_to_weekly"
+            app:destination="@id/weekly" />
+        <argument
+            android:name="weekDay"
+            app:argType="com.androidstrike.diexpa.adapters.Days" />
+    </fragment>
+</navigation>
