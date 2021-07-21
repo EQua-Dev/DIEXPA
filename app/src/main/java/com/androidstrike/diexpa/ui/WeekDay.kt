@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.androidstrike.diexpa.R
 import com.androidstrike.diexpa.data.MealPlan
@@ -15,10 +16,6 @@ import com.androidstrike.diexpa.utils.toast
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_today.*
-import kotlinx.android.synthetic.main.fragment_today.today_breakfast
-import kotlinx.android.synthetic.main.fragment_today.today_brunch
-import kotlinx.android.synthetic.main.fragment_today.today_dinner
 import kotlinx.android.synthetic.main.fragment_week_day.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -53,23 +50,16 @@ class WeekDay : Fragment() {
             weekDay = arguments?.getString("weekDay")!!
         }
 
-        (requireActivity() as AppCompatActivity).supportActionBar?.title = "$weekDay"
-
         val nutritionRef =
             Firebase.firestore.collection(weekDay.toString())
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                Log.d("Equa", "onCreateView: try1")
+                //fetch the diet plan for the selected day
                 val querySnapshot =
                     nutritionRef.whereEqualTo("nutrition", Common.userNutrition!!).get()
                         .await()
-                Log.d("Equa", "onCreateView: $nutritionRef")
-                Log.d("Equa", "onCreateView: ${Common.userNutrition}")
-                Log.d("Equa", "onCreateView: ${querySnapshot.documents}")
-                Log.d("Equa", "onCreateView: try 2")
                 for (query in querySnapshot) {
-                    Log.d("Equa", "onCreateView: try 3")
                     val mealPlan = query.toObject<MealPlan>()
                     withContext(Dispatchers.Main) {
                         day_breakfast.text = mealPlan.breakfast

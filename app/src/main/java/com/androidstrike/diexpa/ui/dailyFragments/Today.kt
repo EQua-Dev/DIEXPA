@@ -37,21 +37,14 @@ class Today : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_today, container, false)
 
-        Log.d("Equa", "onCreateView: Today Reached")
-
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                Log.d("Equa", "onCreateView: try1")
+                //fetch and display the meal plan for 'today'
                 val querySnapshot =
                     nutritionRef.whereEqualTo("nutrition", Common.userNutrition!!).get()
                         .await()
-                Log.d("Equa", "onCreateView: ${Common.dowGood}")
-                Log.d("Equa", "onCreateView: $nutritionRef")
-                Log.d("Equa", "onCreateView: ${Common.userNutrition}")
-                Log.d("Equa", "onCreateView: ${querySnapshot.documents}")
-                Log.d("Equa", "onCreateView: try 2")
+
                 for (query in querySnapshot) {
-                    Log.d("Equa", "onCreateView: try 3")
                     val mealPlan = query.toObject<MealPlan>()
                     withContext(Dispatchers.Main) {
                         today_breakfast.text = mealPlan.breakfast
@@ -61,52 +54,6 @@ class Today : Fragment() {
                         Log.d("Equa", "onCreateView: ${mealPlan.brunch}")
                     }
 
-//                                .addSnapshotListener { value, error ->
-//                                    error?.let {
-//                                        activity?.toast(it.message.toString())
-//                                        return@addSnapshotListener
-//                                    }
-//                Log.d("Equa", "signIn: here")
-//                Log.d("Equa", "signIn: ${querySnapshot.documents}")
-//                                    value?.let {
-//                Log.d("Equa", "signIn: Here2")
-//                val sb = StringBuilder()
-//                for (document in querySnapshot) {
-//                    Log.d("Equa", "signIn: Here3")
-//                    val mealPlan = document.toObject<MealPlan>()
-//
-//                    sb.append(mealPlan.breakfast)
-//                    Common.userNutrition = sb.toString()
-//                }
-//                nutritionRef.addSnapshotListener{ value, error ->
-//                    error?.let {
-//                        activity?.toast(it.message.toString())
-//                        Log.d("Equa", "onActivityCreated: ${it.message.toString()}")
-//                        return@addSnapshotListener
-//                    }
-//                    value?.let {
-//                        for (document in it){
-//
-//                        }
-//                    }
-//                }
-//                nutritionRef.addSnapshotListener{value, error ->
-//                    error?.let {
-//                        activity?.toast(it.message.toString())
-//                        return@addSnapshotListener
-//                    }
-//                    value?.let {
-//                        for (document in it){
-//
-//                        }
-////                        for (document in it){
-////                            val mealPlan = document.toObject<MealPlan>()
-////                            today_breakfast.text = mealPlan.breakfast
-////                            today_lunch.text = mealPlan.lunch
-////                            today_dinner.text = mealPlan.dinner
-////                            today_brunch.text = mealPlan.brunch
-////                        }
-//                    }
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {

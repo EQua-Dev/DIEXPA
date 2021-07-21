@@ -48,6 +48,7 @@ class WeeklyAdapter(val context: Context, val days: List<Days>) :
 
         init {
             itemView.setOnClickListener{
+                //get the week day of the selected day
                 val currentDay = days[currentPosition!!]
                 val activity = it.context as AppCompatActivity
                 val weeklyItem = WeekDay()
@@ -58,12 +59,8 @@ class WeeklyAdapter(val context: Context, val days: List<Days>) :
 
                 val manager = activity.supportFragmentManager
                 val frag_tansaction  = manager.beginTransaction()
-                frag_tansaction.replace(R.id.fragmentContainerView, weeklyItem) //.isAddToBackStackAllowed
+                frag_tansaction.replace(R.id.fragmentContainerView, weeklyItem).addToBackStack(null) //.isAddToBackStackAllowed
                 frag_tansaction.commit()
-
-                activity.onBackPressed()
-
-
 
             }
         }

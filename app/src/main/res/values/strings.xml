@@ -31,4 +31,5 @@
     <string name="lunch_time">12pm - 4pm</string>
     <string name="dinner_time">4pm - 7pm</string>
     <string name="brunch_time">Any time between Breakfast and Dinner</string>
+    <string name="back">Go Back</string>
 </resources>

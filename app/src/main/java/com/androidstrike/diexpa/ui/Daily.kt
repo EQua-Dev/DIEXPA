@@ -36,32 +36,6 @@ class Daily : Fragment() {
         // Inflate the layout for this fragment
 
         val view = inflater.inflate(R.layout.fragment_daily, container, false)
-
-
-
-//        navController = requireActivity().findNavController(R.id.fragmentContainerViewDaily)
-            //Navigation.findNavController(requireContext() as Activity, R.id.fragmentContainerViewDaily)
-
-//        view.bottomNavigationView.setupWithNavController(navController)
-
-//        NavigationUI.setupActionBarWithNavController(requireActivity() as AppCompatActivity,navController)
-
-//        val frgContainer = view.findViewById(R.id.fragmentContainerViewDaily) as View
-//        val bottomNavigationView = view?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-//        val navHostFragment = //FragmentManager.findFragment(frgContainer) as NavHostFragment
-//            activity?.supportFragmentManager?.findFragmentById(R.id.fragmentContainerViewDaily) as NavHostFragment
-//        val navController = navHostFragment.navController //as AppCompatActivity
-//
-//        val appBarConfiguration = AppBarConfiguration(setOf(R.id.menu_today, R.id.menu_tomorrow, R.id.menu_next_day)) //as AppCompatActivity
-//
-////        setupActionBarWithNavController(navController, appBarConfiguration)
-//
-//        bottomNavigationView?.setupWithNavController(navController)
-//
-//        val sharedPref = requireActivity().getSharedPreferences(Common.sharedPrefName, Context.MODE_PRIVATE)
-////        Common.userNutrition =  sharedPref.getString(Common.userNutritionKey, " ").toString()
-
-
         return view
     }
 
