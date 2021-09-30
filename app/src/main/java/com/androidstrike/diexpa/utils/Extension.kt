@@ -15,3 +15,9 @@ fun View.setOnSingleClickListener(l: View.OnClickListener) {
 fun View.setOnSingleClickListener(l: (View) -> Unit) {
     setOnClickListener(OnSingleClickListener(l))
 }
+
+//common function to handle progress bar visibility
+fun View.visible(isVisible: Boolean){
+    visibility = if (isVisible) View.VISIBLE else View.GONE
+}
+

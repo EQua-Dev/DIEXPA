@@ -9,6 +9,7 @@ import com.androidstrike.diexpa.R
 import com.androidstrike.diexpa.data.MealPlan
 import com.androidstrike.diexpa.utils.Common
 import com.androidstrike.diexpa.utils.toast
+import com.androidstrike.diexpa.utils.visible
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -36,6 +37,8 @@ class NextDay : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        pb_fragment_next_day.visible(true)
+
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 nutritionRef.addSnapshotListener{value, error ->
@@ -52,6 +55,9 @@ class NextDay : Fragment() {
                             next_day_brunch.text = mealPlan.brunch
                         }
                     }
+                }
+                withContext(Dispatchers.Main){
+                    pb_fragment_next_day.visible(false)
                 }
             }catch (e: Exception){
                 withContext(Dispatchers.Main){

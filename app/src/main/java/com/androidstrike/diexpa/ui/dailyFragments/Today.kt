@@ -7,11 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import com.androidstrike.diexpa.R
 import com.androidstrike.diexpa.data.MealPlan
 import com.androidstrike.diexpa.data.User
 import com.androidstrike.diexpa.utils.Common
 import com.androidstrike.diexpa.utils.toast
+import com.androidstrike.diexpa.utils.visible
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -27,6 +29,8 @@ import kotlin.math.log
 
 class Today : Fragment() {
 
+    lateinit var pbToday: ProgressBar
+
     private val nutritionRef =
         Firebase.firestore.collection(Common.dowGood)//.document("${Common.userNutrition}")
 
@@ -36,6 +40,10 @@ class Today : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_today, container, false)
+
+        pbToday = view.findViewById(R.id.pb_fragment_today)
+
+        pbToday.visible(true)
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -54,6 +62,10 @@ class Today : Fragment() {
                         Log.d("Equa", "onCreateView: ${mealPlan.brunch}")
                     }
 
+                }
+
+                withContext(Dispatchers.Main){
+                    pbToday.visible(false)
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {

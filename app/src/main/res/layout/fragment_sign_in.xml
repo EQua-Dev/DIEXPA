@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/auth_bg"
+    android:background="@drawable/auth_inner_bg"
     tools:context=".ui.auth.SignIn">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_above="@id/layout_login_details"
         android:layout_centerHorizontal="true"
         android:src="@drawable/splash" />
@@ -95,6 +95,13 @@
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pb_sign_in"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"/>
 
 
 </RelativeLayout>

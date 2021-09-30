@@ -21,6 +21,7 @@ import com.androidstrike.diexpa.utils.Common.userEmail
 import com.androidstrike.diexpa.utils.Common.userId
 import com.androidstrike.diexpa.utils.setOnSingleClickListener
 import com.androidstrike.diexpa.utils.toast
+import com.androidstrike.diexpa.utils.visible
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -40,7 +41,7 @@ class SignUp : Fragment(), AdapterView.OnItemSelectedListener {
     var userNutrition: String? = null
 
 
-    var nutritionArray = arrayOf("Vegetarian", "Vegan", "Omnivore", "Mediterranean", "Glutten-Free")
+//    var nutritionArray = arrayOf(")
     val NEW_SPINNER_ID = 1
 
 
@@ -55,27 +56,34 @@ class SignUp : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val nutritionSpinner =
-            ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item, nutritionArray)
+        val nutritionArray = resources.getStringArray(R.array.nutrition)
+        val arrayAdapter = ArrayAdapter(requireContext(),R.layout.drop_down_item,nutritionArray)
 
-        nutritionSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        with(spinner_nutrition) {
-            adapter = nutritionSpinner
-            setSelection(0, false)
-            onItemSelectedListener = this@SignUp
-            prompt = "Select Your Nutrition"
-            gravity = Gravity.CENTER
-        }
+        auto_complete_tv.setAdapter(arrayAdapter)
 
-        val spinner = Spinner(context)
-        spinner.id = NEW_SPINNER_ID
+        nutrition = auto_complete_tv.text.toString()
 
-        val ll = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        )
-        ll.setMargins(10, 40, 10, 10)
-        layout_sign_up.addView(spinner)
+//        val nutritionSpinner =
+//            ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item, nutritionArray)
+//
+//        nutritionSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//        with(spinner_nutrition) {
+//            adapter = nutritionSpinner
+//            setSelection(0, false)
+//            onItemSelectedListener = this@SignUp
+//            prompt = "Select Your Nutrition"
+//            gravity = Gravity.CENTER
+//        }
+//
+//        val spinner = Spinner(context)
+//        spinner.id = NEW_SPINNER_ID
+//
+//        val ll = LinearLayout.LayoutParams(
+//            LinearLayout.LayoutParams.MATCH_PARENT,
+//            LinearLayout.LayoutParams.WRAP_CONTENT
+//        )
+//        ll.setMargins(10, 40, 10, 10)
+//        layout_sign_up.addView(spinner)
 
         signup_txt_login.setOnClickListener {
             findNavController().navigate(R.id.action_signUp_to_signIn)
@@ -126,6 +134,11 @@ class SignUp : Fragment(), AdapterView.OnItemSelectedListener {
             sign_up_confirm_password.requestFocus()
             return
         }
+            if (nutrition.isEmpty()){
+                txt_input_layout.error = "Select Your Diet Type"
+                auto_complete_tv.requestFocus()
+                return
+            }
 //        if (!Common.PASSWORD_PATTERN.matcher(password).matches()) {
 //            sign_up_password.error =
 //                "Password too weak. Must Contain at least one uppercase, one lowercase, one number and one character"
@@ -138,6 +151,8 @@ class SignUp : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private fun registerUser(email: String, password: String) {
+
+        pb_sign_up.visible(true)
         //  implement user sign up
         Common.mAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
@@ -146,9 +161,11 @@ class SignUp : Fragment(), AdapterView.OnItemSelectedListener {
                     saveUser(email, newUserId)
 //                    userId = Common.mAuth.currentUser?.uid
                     isFirstTime()
+                    pb_sign_up.visible(false)
                     findNavController().navigate(R.id.action_signUp_to_signIn)
                 } else {
                     it.exception?.message?.let {
+                        pb_sign_up.visible(false)
                         activity?.toast(it)
                     }
                 }
@@ -181,12 +198,12 @@ class SignUp : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        nutrition = parent?.getItemAtPosition(position).toString()
-        userNutrition = nutrition
+//        nutrition = parent?.getItemAtPosition(position).toString()
+//        userNutrition = nutrition
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
-        userNutrition = nutritionArray[0]
+//        userNutrition = nutritionArray[0]
     }
 
     //boolean shared pref to store whether user is using the app for the 1st time

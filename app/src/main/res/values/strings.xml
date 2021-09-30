@@ -13,7 +13,7 @@
     <string name="log_in_welcome_note">Welcome Back</string>
     <string name="log_in_password">Password</string>
     <string name="log_in_button_confirm">Log In</string>
-    <string name="log_in_forgot_password">Forgot Passwor?</string>
+    <string name="log_in_forgot_password">Forgot Password?</string>
     <string name="sign_up_text">Create New Account</string>
     <string name="text_enter_email_for_password_reset">Enter Your Registered Email</string>
     <string name="text_reset_password">Reset Password</string>
@@ -32,4 +32,14 @@
     <string name="dinner_time">4pm - 7pm</string>
     <string name="brunch_time">Any time between Breakfast and Dinner</string>
     <string name="back">Go Back</string>
+    <string name="nutrition_select">Your Diet Type</string>
+
+    <string-array name="nutrition">
+        <item>Vegetarian</item>
+        <item>Vegan</item>
+        <item>Omnivore</item>
+        <item>Mediterranean</item>
+        <item>Glutten-Free</item>
+
+    </string-array>
 </resources>

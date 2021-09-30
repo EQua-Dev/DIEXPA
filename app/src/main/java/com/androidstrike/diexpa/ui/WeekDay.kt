@@ -1,5 +1,6 @@
 package com.androidstrike.diexpa.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import com.androidstrike.diexpa.R
 import com.androidstrike.diexpa.data.MealPlan
 import com.androidstrike.diexpa.utils.Common
 import com.androidstrike.diexpa.utils.toast
+import com.androidstrike.diexpa.utils.visible
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -50,6 +52,8 @@ class WeekDay : Fragment() {
             weekDay = arguments?.getString("weekDay")!!
         }
 
+        pb_fragment_weekday.visible(true)
+
         val nutritionRef =
             Firebase.firestore.collection(weekDay.toString())
 
@@ -70,12 +74,27 @@ class WeekDay : Fragment() {
                     }
 
                 }
+                withContext(Dispatchers.Main) {
+                    pb_fragment_weekday.visible(false)
+                }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
                     activity?.toast(e.message.toString())
                     Log.d("Equa", "onActivityCreated: ${e.message.toString()}")
                 }
             }
+        }
+
+        btn_back.setOnClickListener {
+
+            val intent = Intent(requireContext(), Landing::class.java)
+            startActivity(intent)
+
+//            val frag_weekly = Weekly()
+//            val manager = activity?.supportFragmentManager
+//            val frag_tansaction  = manager?.beginTransaction()
+//            frag_tansaction?.replace(R.id.fragmentContainerView, frag_weekly )?.addToBackStack(null) //.isAddToBackStackAllowed
+//            frag_tansaction?.commit()
         }
 
     }

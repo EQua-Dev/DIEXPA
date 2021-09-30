@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/layout_sign_up"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@drawable/auth_bg"
+    android:background="@drawable/auth_inner_bg"
     tools:context=".ui.auth.SignUp">
 
-    <ImageView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
@@ -80,13 +85,25 @@
                 android:textColor="@color/purple_500"
                 android:id="@+id/sign_up_confirm_password"/>
 
-            <Spinner
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_input_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:spinnerMode="dialog"
-                android:padding="15dp"
-                android:id="@+id/spinner_nutrition" />
+                app:boxStrokeColor="@color/purple_500">
 
+                <AutoCompleteTextView
+                    android:id="@+id/auto_complete_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:layout_margin="8dp"
+                    android:hint="@string/nutrition_select" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
         </LinearLayout>
@@ -110,6 +127,13 @@
         android:gravity="center_horizontal"
         android:id="@+id/signup_txt_login"/>
 
+    </LinearLayout>
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        android:id="@+id/pb_sign_up"/>
 
-</LinearLayout>
+</RelativeLayout>

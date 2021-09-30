@@ -16,6 +16,7 @@ import com.androidstrike.diexpa.data.User
 import com.androidstrike.diexpa.ui.Landing
 import com.androidstrike.diexpa.utils.Common
 import com.androidstrike.diexpa.utils.toast
+import com.androidstrike.diexpa.utils.visible
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.ktx.toObject
 import kotlinx.android.synthetic.main.fragment_sign_in.*
@@ -82,6 +83,7 @@ class SignIn : Fragment() {
     }
 
     private fun signIn(email: String, password: String) {
+        pb_sign_in.visible(true)
         //implement sign in method
         email.let { Common.mAuth.signInWithEmailAndPassword(it, password) }
             .addOnCompleteListener { it ->
@@ -91,57 +93,34 @@ class SignIn : Fragment() {
                     CoroutineScope(Dispatchers.IO).launch {
                         try {
                             val querySnapshot =Common.userCollectionRef.whereEqualTo("uid", Common.userId!!).get().await()
-//                                .addSnapshotListener { value, error ->
-//                                    error?.let {
-//                                        activity?.toast(it.message.toString())
-//                                        return@addSnapshotListener
-//                                    }
-                                    Log.d("Equa", "signIn: here")
-                                    Log.d("Equa", "signIn: ${querySnapshot.documents}")
-//                                    value?.let {
-                                        Log.d("Equa", "signIn: Here2")
+
                                         val sb = StringBuilder()
                                         for (document in querySnapshot){
-                                            Log.d("Equa", "signIn: Here3")
                                             val user = document.toObject<User>()
                                             sb.append(user.nutrition)
                                             Common.userNutrition = sb.toString()
                                         }
-                                        Log.d("Equa", "signIn: ${Common.userNutrition}")
-//                                    }
-//                                }
-//                                Log.d("Equa", "signIn: 2")
-//                                val query = Common.userCollectionRef.whereEqualTo("uid", Common.userId).get().await()
-////                                val query = Common.userCollectionRef.whereEqualTo("uid", "BrE4yrw63Xh3IGXF6Uc6iRHKcEy1BrE4yrw63Xh3IGXF6Uc6iRHKcEy1").get().await()
-//                                Log.d("Equa", "signIn: ${Common.userNutrition}")
-//                                Log.d("Equa", "signIn: 1")
-//                                for (document in query){
-//                                    val user = document.toObject<User>()
-//                                    Log.d("EQUA", "signIn: ${user.nutrition}")
-//                                    val sb = StringBuilder(user.nutrition)
-//                                    Common.userNutrition = sb.toString()
-//                                    Log.d("Equa", "signIn: ${Common.userNutrition}")
-//                                }
+//
+                            withContext(Dispatchers.Main){
+                                pb_sign_in.visible(false)
+                                val landing = Landing()
+                                val manager = fragmentManager
+                                val frag_tansaction  = manager?.beginTransaction()
+                                frag_tansaction?.replace(R.id.fragmentContainerView, landing)
+                                frag_tansaction?.commit()
+                            }
 
-                            val landing = Landing()
-                            val manager = fragmentManager
-                            val frag_tansaction  = manager?.beginTransaction()
-                            frag_tansaction?.replace(R.id.fragmentContainerView, landing)
-                            frag_tansaction?.commit()
-
-//                            val i = Intent(requireContext(), Landing::class.java)
-//                            startActivity(i)
                         } catch (e: Exception) {
                             withContext(Dispatchers.Main) {
+                                pb_sign_in.visible(false)
                                 activity?.toast(e.message.toString())
-                                Log.d("Equa", "signIn: ${e.message.toString()}")
                             }
                         }
                     }
-
-//                    Common.currentUser = firebaseUser?.uid!!
                 } else {
+                    pb_sign_in.visible(false)
                     activity?.toast(it.exception?.message.toString())
+                    Log.d("EQUA", it.exception?.message.toString())
                 }
             }
     }
